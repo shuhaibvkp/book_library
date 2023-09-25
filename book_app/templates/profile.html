@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/c8508a44fa.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <style>
+<!--        #a{-->
+<!--            background-color: blueviolet;-->
+<!--            height: 250px;-->
+<!--            width: 250px;-->
+<!--        }-->
+        #a{
+            background-color: #5072A7;
+            width: 800px;
+            height: 800px;
+            margin-left: 50px;
+            margin-top:100px;
+        }
+        #b{
+            background-color: #6699CC;
+            width: 1050px;
+            height: 800px;
+            margin-left: 900px;
+             margin-top:-800px;
+
+        }
+        th,td{
+          text-align:center;
+          padding:20px;
+          color:white;
+        }
+    </style>
+</head>
+<body>
+<div id="a"><h1 style="color:white;text-align:center;">Add Book</h1>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    <table style="border-collapse: separate; border-spacing: 50px;">
+        <tr>
+            <th><label style="color:white;">Book Name:</label></th>
+            <td><input type="text" name="boname" placeholder="Enter Book Name" class="form-group"></td>
+        </tr>
+         <tr>
+            <th><label style="color:white;">Author:</label></th>
+            <td><input type="text" name="auname" placeholder="Enter Author Name" class="form-group"></td>
+        </tr>
+         <tr>
+            <th><label style="color:white;">Book PDF:</label></th>
+            <td><input type="file" name="bopdf"></td>
+        </tr>
+        <tr>
+            <th><label style="color:white;">Book Image:</label></th>
+            <td><input type="file" name="boimage"></td>
+        </tr>
+        <tr>
+            <th><label style="color:white;">Date:</label></th>
+            <td><h3>{{n}}</h3></td>
+        </tr>
+        <tr>
+            <td><input type="submit" class="btn btn-success"></td>
+        </tr>
+    </table>
+</form>
+
+</div>
+<div id="b">
+    <form>
+        <table border="1px" style="text-align:center;">
+            <tr>
+                <th>Sno.</th>
+                <th>Book Name</th>
+                <th>PDF Name</th>
+                <th>PDF Download</th>
+                <th>Image</th>
+                <th>Date</th>
+                <th>Delete</th>
+                <th>Detail View</th>
+                <th>Edit</th>
+            </tr>
+            {% for i,j,k,l,m,n in a %}
+            <tr>
+                <td>{{i}}</td>
+                <td>{{j}}</td>
+                <td>{{k}}</td>
+                <td><a href="" download="">{{l}}</a></td>
+                <td><img src="{% static m %}" height="100px" width="100px"></td>
+                <td>{{n}}</td>
+                <td><a href="http://127.0.0.1:8000/book_app/bookdelete/{{i}}"><i class="fa-solid fa-trash" style="color:white;"></i></a></td>
+                <td><a href=""><i class="fa-solid fa-eye" style="color:white;"></i></a></td>
+                <td><a href=""><i class="fa-solid fa-pen-to-square" style="color:white;"></i></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
+</body>
+</html>
